@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./SetNewWatchForm.css";
 
-let id = 0;
-
 export const SetNewWatchForm = ({
   watchesList,
   setWatchesList,
@@ -14,12 +12,13 @@ export const SetNewWatchForm = ({
 }) => {
   const [city, setCity] = useState("");
   const [timeZone, setTimeZone] = useState("");
+  const [id, setId] = useState(0);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const watchesData = {
-      id: id++,
+      id: id,
       city,
       timeZone,
     };
@@ -27,6 +26,7 @@ export const SetNewWatchForm = ({
     setWatchesList(newList);
     setCity("");
     setTimeZone("");
+    setId(id + 1);
   };
 
   return (
