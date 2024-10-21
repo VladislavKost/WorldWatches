@@ -1,0 +1,17 @@
+.city-name {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.watch-container {
+    position: relative;
+    width: 140px;
+}
+
+.watch-remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}

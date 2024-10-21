@@ -1,0 +1,25 @@
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: end;
+    gap: 20px
+}
+
+.form-group-title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.form-group-title input {
+    height: 50px;
+    padding: 5px;
+}
+
+.form-group button {
+    height: 50px;
+    width: 100px;
+    background-color: white;
+}
