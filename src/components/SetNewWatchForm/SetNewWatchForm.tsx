@@ -38,6 +38,7 @@ export const SetNewWatchForm = ({
             type="text"
             id="city"
             required
+            value={city}
             onChange={(e) => setCity(e.target.value)}
           />
         </div>
@@ -47,6 +48,7 @@ export const SetNewWatchForm = ({
             type="number"
             id="time-zone"
             required
+            value={timeZone}
             onChange={(e) => setTimeZone(e.target.value)}
           />
         </div>
