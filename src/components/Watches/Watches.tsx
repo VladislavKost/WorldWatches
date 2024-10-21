@@ -5,9 +5,11 @@ import "./Watches.css";
 
 export const Watches = ({
   data,
+  watchesList,
   setWatchesList,
 }: {
   data: { id: number; city: string; timeZone: string };
+  watchesList: { id: number; city: string; timeZone: string }[];
   setWatchesList: {
     (
       data: {
@@ -19,9 +21,8 @@ export const Watches = ({
   };
 }) => {
   const handleRemoveWatchClick = (id: number) => {
-    setWatchesList((prevList) =>
-      prevWatchesList.filter((watch) => watch.id !== id)
-    );
+    const newList = watchesList.filter((watch) => watch.id !== id);
+    setWatchesList(newList);
   };
 
   return (

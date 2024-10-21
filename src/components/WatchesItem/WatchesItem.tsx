@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./WatchesItem.css";
 
@@ -16,7 +16,18 @@ export const WatchesItem = ({
     );
   };
   const [currentTime, setCurrentTime] = useState(getTimeZoneDate());
-  const clockRef = useRef(null);
+  const [seconds, setSeconds] = useState(currentTime.getSeconds());
+  const [minutes, setMinutes] = useState(currentTime.getMinutes());
+  const [hours, setHours] = useState(currentTime.getHours());
+  const [secondsDegree, setSecondsDegree] = useState(
+    `rotate(${(seconds / 60) * 360}deg)`
+  );
+  const [minutesDegree, setMinutesDegree] = useState(
+    `rotate(${(minutes / 60) * 360}deg)`
+  );
+  const [hoursDegree, setHoursDegree] = useState(
+    `rotate(${(hours / 60) * 360}deg)`
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,35 +39,19 @@ export const WatchesItem = ({
   }, []);
 
   useEffect(() => {
-    if (clockRef.current) {
-      const clock = clockRef.current as HTMLElement;
-      const secondHand = clock.querySelector(".second-hand") as HTMLElement;
-      const minuteHand = clock.querySelector(".minute-hand") as HTMLElement;
-      const hourHand = clock.querySelector(".hour-hand") as HTMLElement;
-
-      // Обновление положения стрелок
-      const updateClock = () => {
-        const seconds = currentTime.getSeconds();
-        const minutes = currentTime.getMinutes();
-        const hours = currentTime.getHours();
-
-        const secondsDegrees = (seconds / 60) * 360;
-        const minutesDegrees = (minutes / 60) * 360;
-        const hoursDegrees = (hours / 12) * 360;
-
-        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-      };
-
-      updateClock();
-    }
+    setSeconds(currentTime.getSeconds());
+    setSecondsDegree(`rotate(${(seconds / 60) * 360}deg)`);
+    setMinutes(currentTime.getMinutes());
+    setMinutesDegree(`rotate(${(minutes / 60) * 360}deg)`);
+    setHours(currentTime.getHours());
+    setHoursDegree(`rotate(${(hours / 60) * 360}deg)`);
   }, [currentTime]);
+
   return (
-    <div className="clock" ref={clockRef}>
-      <div className="second-hand"></div>
-      <div className="minute-hand"></div>
-      <div className="hour-hand"></div>
+    <div className="clock">
+      <div className="second-hand" style={{ transform: secondsDegree }}></div>
+      <div className="minute-hand" style={{ transform: minutesDegree }}></div>
+      <div className="hour-hand" style={{ transform: hoursDegree }}></div>
     </div>
   );
 };

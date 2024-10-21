@@ -12,12 +12,16 @@ export const WorldWatches = () => {
 
   return (
     <div>
-      <SetNewWatchForm setWatchesList={setWatchesList} />
+      <SetNewWatchForm
+        watchesList={watchesList}
+        setWatchesList={setWatchesList}
+      />
       <div className="watches-container">
         {watchesList.map((watch) => (
           <Watches
             key={watch.id}
             data={watch}
+            watchesList={watchesList}
             setWatchesList={setWatchesList}
           />
         ))}
